@@ -54,33 +54,45 @@ void exit_usage(void)
  */
 UserValues set_user_values(int argc, char* argv[])
 {
-	UserValues user = {.output = false};
-	argv++;
+	UserValues user = {
+		.output = false,
+		.filePath = NULL,
+		.interact = false,
+		.location = NULL};
 
 	if (argc < 2) {
 		exit_usage();
 	}
-
+        
+	argv++;
 	while (argv[0]) {
 	    	if (!strcmp(argv[0], "-o") || !strcmp(argv[0], "--output")) {
 			if (user.output) {
-				exit_usage();
+				exit_usage(); //for duplicates
 			}
 			user.output = true;
 			argv++;
-			if (argv[0] && (!strncmp(argv[0], "--", 2) || !strncmp(argv[0], "-", 1))) {
+			if (argv[0] && strncmp(argv[0], "-", 1) != 0) {
 				user.filePath = argv[0];
 				argv++;
 			}
 		} else if (!strcmp(argv[0], "-i") || !strcmp(argv[0], "--interact")) {
 			if (user.interact) {
-				exit_usage();
+				exit_usage(); //for duplicates
 			}
 			user.interact = true;
 			argv++;
-		} else { //TODO: make that last location parameter!
-			exit_usage();
+		} else {
+			if (user.location) {
+				exit_usage();
+			}
+			user.location = argv[0];
+			argv++;
 		}
+	}
+
+	if (!user.location) {
+		exit_usage();
 	}
 
 	return user;
