@@ -19,7 +19,7 @@ static const char* const usageMessage = "Usage: bomcli ["
 				 OUTPUT_FLAG "[=filePath]] ["
 				 NO_COLOUR_FLAG_SHORT " | "
 				 NO_COLOUR_FLAG "] location\n";
-static const char* const briefMessage = "bomcli - a weather radar viewer through the CLI via unicode and ANSI codes.\n"
+static const char* const briefMessage = "bomcli - an experimental and ridiculous weather radar viewer through the CLI via unicode and ANSI colour codes.\n"
 					"Radar imagery data is public data sourced from the Bureau of Meterology's anonymous "
 				        "and public FTP server (see https://www.bom.gov.au/catalogue/anon-ftp.shtml)\n";
 static const char* const optionsMessage = "Options:\n" OUTPUT_FLAG_SHORT ", " OUTPUT_FLAG "[=filePath]   the file path to "
