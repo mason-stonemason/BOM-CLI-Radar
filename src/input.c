@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <stdbool.h>
+#include "../include/parameters.h"
 
 #define PROGRAM_NAME "bomcli"
 
@@ -39,24 +40,8 @@ typedef enum {
 	INVALID_FILE_EXIT = 4
 } ErrorCodes;
 
-//struct to hold CLI parameter values
-typedef struct {
-	bool output; //-o | --output
-	char* filePath; //optional filePath from --output
-	bool noColour; //-nc | --no-colour
-	char* location; //suburb
-} UserValues;
-
 UserValues set_user_values(int argc, char* argv[]);
 void file_path(UserValues* cli);
-
-int main(int argc, char* argv[])
-{
-	UserValues cli = set_user_values(argc, argv);
-	if (cli.output) {
-		file_path(&cli);
-	}
-}
 
 /**
  * @brief exiting function for usage errors
